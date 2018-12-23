@@ -1,10 +1,12 @@
 package com.elmsuf.tuto_final.repository.model;
+import android.databinding.BaseObservable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Course {
+public class Course extends BaseObservable {
     @SerializedName("titolo")
     @Expose
     private String title;

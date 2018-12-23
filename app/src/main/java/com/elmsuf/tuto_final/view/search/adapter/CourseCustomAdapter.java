@@ -15,9 +15,12 @@ import android.widget.TextView;
 import com.elmsuf.tuto_final.databinding.CourseBinding;
 import com.elmsuf.tuto_final.repository.model.Course;
 import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.search.InteractionHandler;
 import com.elmsuf.tuto_final.view.search.SearchFragment;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 import static com.elmsuf.tuto_final.view.search.SearchFragment.EXTRA_COURSE;
 
@@ -38,6 +41,7 @@ public class CourseCustomAdapter extends RecyclerView.Adapter<CourseCustomAdapte
         if (inflater == null) {
             inflater = LayoutInflater.from(viewGroup.getContext());
         }
+
         CourseBinding courseBinding = CourseBinding.inflate(inflater, viewGroup, false);
 //        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_list_item, viewGroup, false);
         return new CustomView(courseBinding);
@@ -49,6 +53,16 @@ public class CourseCustomAdapter extends RecyclerView.Adapter<CourseCustomAdapte
 //        holder.txv_course_name_list_item.setText(course.getTitle());
         Course course = listOfCourses.get(i);
         holder.bind(course);
+
+        final CourseBinding binding = holder.getBinding();
+        binding.setHandler(new InteractionHandler() {
+            @Override
+            public void onCourseItemClicked() {
+                Log.d("mTAG", "onCourseItemClicked: ");
+                Toasty.success(context,"List item clicked").show();
+            }
+        });
+//        binding.set
     }
 
     @Override

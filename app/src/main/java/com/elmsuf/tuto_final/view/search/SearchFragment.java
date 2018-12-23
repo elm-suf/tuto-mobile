@@ -31,6 +31,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
     public static final String EXTRA_COURSE = "EXTRA_COURSE" ;
     private SearchViewModel viewModel;
     private CourseCustomAdapter customAdapter;
+    Context context;
 
     RecyclerView recyclerView;
 
@@ -41,6 +42,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        context = getContext();
         recyclerView = getView().findViewById(R.id.recycler_courses);
         viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         viewModel.init();
@@ -49,7 +51,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
                     @Override
                     public void onChanged(@Nullable List<Course> courses) {
                         customAdapter = new CourseCustomAdapter(getActivity(), courses);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         recyclerView.setAdapter(customAdapter);
                     }
                 }
