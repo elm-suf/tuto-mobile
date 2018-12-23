@@ -1,4 +1,4 @@
-package com.elmsuf.tuto_final.viewmodel;
+package com.elmsuf.tuto_final.viewmodel.login;
 
 import android.arch.lifecycle.ViewModel;
 import android.text.Editable;
@@ -9,13 +9,13 @@ import android.view.View;
 import com.elmsuf.tuto_final.repository.dao.ApiClient;
 import com.elmsuf.tuto_final.repository.dao.StudentDao;
 import com.elmsuf.tuto_final.repository.model.Student;
-import com.elmsuf.tuto_final.view.ResultLoginCallbacks;
+import com.elmsuf.tuto_final.view.login.ResultLoginCallbacks;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.elmsuf.tuto_final.view.LoginActivity.TAG;
+import static com.elmsuf.tuto_final.view.login.LoginActivity.TAG;
 
 
 public class LoginViewModel extends ViewModel {
@@ -72,7 +72,7 @@ public class LoginViewModel extends ViewModel {
         StudentDao dao = ApiClient.getApiClient().create(StudentDao.class);
 
         Call<Student> call = dao.submitLogin(student.username, student.password);
-        Log.d(TAG, "submitLogin() called with: view = [" + student.username +"; " + student.password+"]");
+        Log.d(TAG, "submitLogin() called with: [" + student.username +"; " + student.password+"]");
         System.out.println(call.request());
         call.enqueue(new Callback<Student>() {
             @Override
@@ -80,7 +80,7 @@ public class LoginViewModel extends ViewModel {
                 Log.d(TAG, "onResponse() called with: call = \n[" + call.request().toString() + "],\n" +
                         "response = [" + response.body() + "]");
                 if (response.isSuccessful()){
-                    callbacks.onSuccess(response.message());
+                    callbacks.onSuccess(response.body().username);
                 }else{
                     callbacks.onError(response.message());
                 }

@@ -1,47 +1,23 @@
-package com.elmsuf.tuto_final.view;
+package com.elmsuf.tuto_final.view.login;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.databinding.ActivityLoginBinding;
-import com.elmsuf.tuto_final.viewmodel.LoginViewModel;
-import com.elmsuf.tuto_final.viewmodel.LoginViewModelFactory;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.elmsuf.tuto_final.view.home.MainActivity;
+import com.elmsuf.tuto_final.view.search.SearchFragment;
+import com.elmsuf.tuto_final.viewmodel.login.LoginViewModel;
+import com.elmsuf.tuto_final.viewmodel.login.LoginViewModelFactory;
 
 import es.dmoral.toasty.Toasty;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -65,8 +41,16 @@ public class LoginActivity extends AppCompatActivity implements ResultLoginCallb
     }
 
     @Override
-    public void onSuccess(String message) {
-        Toasty.success(this, message).show();
+    public void onSuccess(String username) {
+        Toasty.success(this, String.format("Welcome %s", username)).show();
+        //todo add shared preferences
+//        MainActivity.prefConfig.displayToast("Login Success");
+//        MainActivity.prefConfig.writeLoginStatus(true);
+//        MainActivity.prefConfig.writeName(username);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Intent.EXTRA_USER, username);
+        startActivity(intent);
     }
 
     @Override

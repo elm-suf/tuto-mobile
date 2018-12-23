@@ -4,6 +4,9 @@ import android.databinding.BaseObservable;
 import com.google.gson.annotations.SerializedName;
 
 public class Student extends BaseObservable {
+
+    @SerializedName("id")
+    public int id;
     @SerializedName("nome")
     public String firstName;
     @SerializedName("cognome")

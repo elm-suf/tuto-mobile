@@ -1,10 +1,10 @@
-package com.elmsuf.tuto_final.viewmodel;
+package com.elmsuf.tuto_final.viewmodel.login;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.elmsuf.tuto_final.view.ResultLoginCallbacks;
+import com.elmsuf.tuto_final.view.login.ResultLoginCallbacks;
 
 public class LoginViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private ResultLoginCallbacks callbacks;
