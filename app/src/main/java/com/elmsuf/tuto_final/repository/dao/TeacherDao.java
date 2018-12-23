@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface TeacherDao {
-    @GET("teachers")
+        @GET("teachers")
     Call<List<Teacher>> getAllTeachers();
 
     @GET("teachers/teaching/{course}")

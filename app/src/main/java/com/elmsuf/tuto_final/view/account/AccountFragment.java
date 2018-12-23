@@ -1,4 +1,4 @@
-package com.elmsuf.tuto_final.view;
+package com.elmsuf.tuto_final.view.account;
 
 
 import android.content.Context;

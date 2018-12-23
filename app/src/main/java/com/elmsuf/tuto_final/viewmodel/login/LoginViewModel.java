@@ -69,7 +69,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void onLoginClicked(View view){
-        StudentDao dao = ApiClient.getApiClient().create(StudentDao.class);
+        StudentDao dao = ApiClient.getInstance().create(StudentDao.class);
 
         Call<Student> call = dao.submitLogin(student.username, student.password);
         Log.d(TAG, "submitLogin() called with: [" + student.username +"; " + student.password+"]");

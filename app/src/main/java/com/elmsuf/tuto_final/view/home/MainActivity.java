@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.databinding.ActivityMainBinding;
-import com.elmsuf.tuto_final.view.AccountFragment;
+import com.elmsuf.tuto_final.view.account.AccountFragment;
 import com.elmsuf.tuto_final.view.reservations.ReservationsFragment;
 import com.elmsuf.tuto_final.view.search.SearchFragment;
 

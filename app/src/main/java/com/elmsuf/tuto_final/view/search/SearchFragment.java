@@ -1,26 +1,60 @@
 package com.elmsuf.tuto_final.view.search;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.elmsuf.tuto_final.R;
+import com.elmsuf.tuto_final.repository.model.Course;
+import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.search.adapter.CourseCustomAdapter;
+import com.elmsuf.tuto_final.viewmodel.searchVM.SearchViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SearchCallbacks{
+    public static final String EXTRA_COURSE = "EXTRA_COURSE" ;
+    private SearchViewModel viewModel;
+    private CourseCustomAdapter customAdapter;
 
+    RecyclerView recyclerView;
 
     public SearchFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        recyclerView = getView().findViewById(R.id.recycler_courses);
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
+        viewModel.init();
+        viewModel.getAll().observe(
+                this, new Observer<List<Course>>() {
+                    @Override
+                    public void onChanged(@Nullable List<Course> courses) {
+                        customAdapter = new CourseCustomAdapter(getActivity(), courses);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView.setAdapter(customAdapter);
+                    }
+                }
+        );
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +91,14 @@ public class SearchFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onItemClicked(Course course) {
+        Log.d("mTAG", "onItemClicked() called with: course = [" + course.getTitle() + "]");
+        Intent intent = new Intent(getContext(), ChooseTeacherActivity.class);
+        intent.putExtra(EXTRA_COURSE, course.getTitle());
+        startActivity(intent);
     }
 
     /**
