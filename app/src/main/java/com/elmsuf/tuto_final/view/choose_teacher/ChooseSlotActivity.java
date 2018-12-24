@@ -87,6 +87,14 @@ public class ChooseSlotActivity extends AppCompatActivity {
 
                 List<Slot> body = response.body();
                 Toasty.info(getApplication(), response.message()).show();
+                btn_1.setBackgroundColor(Color.GREEN);
+                btn_2.setBackgroundColor(Color.GREEN);
+                btn_3.setBackgroundColor(Color.GREEN);
+                btn_4.setBackgroundColor(Color.GREEN);
+                btn_1.setClickable(true);
+                btn_2.setClickable(true);
+                btn_3.setClickable(true);
+                btn_4.setClickable(true);
                 for (Slot slot : body) {
                     String nSlot = slot.getSlot();
                     switch (nSlot) {
