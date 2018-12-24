@@ -44,6 +44,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
     Button btn_3;
     Button btn_4;
     String teacher;
+    String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
@@ -68,11 +69,39 @@ public class ChooseSlotActivity extends AppCompatActivity {
 //        ReservationRepository repository = new ReservationRepository(this.getApplication());
         dao = ApiClient.getInstance().create(ReservationDao.class);
 
-        String date = DateFormat.format("yyyy-MM-dd", new Date()).toString();
+        date = DateFormat.format("yyyy-MM-dd", new Date()).toString();
         showSlots(teacher, date);
 
         searchDate.setOnClickListener(this::displayDateModal);
         mDateSetListener = this::onDateSet;
+
+        btn_1.setOnClickListener(v -> effettuaPrenotazione(1));
+        btn_2.setOnClickListener(v -> effettuaPrenotazione(2));
+        btn_3.setOnClickListener(v -> effettuaPrenotazione(3));
+        btn_4.setOnClickListener(v -> effettuaPrenotazione(4));
+    }
+
+    private void effettuaPrenotazione(int i) {
+        //todo hardcoded USERNAME(get from Shared pref) & COURSE(get from intent)
+        Call<Void> voidCall = dao.makeReservation("username", teacher, i, "attiva", "corso", date);
+
+        voidCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toasty.success(getApplicationContext(), response.message()).show();
+                    showSlots(teacher, date);
+                } else {
+                    Toasty.info(getApplication(), response.message()).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toasty.error(getApplication(), t.getMessage()).show();
+            }
+        });
+
 
     }
 
@@ -143,7 +172,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
         month = month + 1;
         Log.d("mTAG", "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-        String date = year + "-" + month + "-" + day;
+        date = year + "-" + month + "-" + day;
         searchDate.setText(date);
         showSlots(teacher, date);
     }
