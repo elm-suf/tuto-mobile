@@ -71,7 +71,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/crimg_course_letter"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Mariolino84XD" />
+                tools:text="Programmazione 1" />
 
         </android.support.constraint.ConstraintLayout>
 
