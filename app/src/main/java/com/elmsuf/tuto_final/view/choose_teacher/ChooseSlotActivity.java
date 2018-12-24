@@ -1,13 +1,16 @@
 package com.elmsuf.tuto_final.view.choose_teacher;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -40,6 +43,9 @@ public class ChooseSlotActivity extends AppCompatActivity {
     Button btn_2;
     Button btn_3;
     Button btn_4;
+    String teacher;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_slot);
 
         Intent intent = getIntent();
-        String teacher = intent.getStringExtra(EXTRA_TEACHER);
+        teacher = intent.getStringExtra(EXTRA_TEACHER);
         searchDate = findViewById(R.id.search_date);
         txv_response = findViewById(R.id.txv_response);
 
@@ -62,16 +68,25 @@ public class ChooseSlotActivity extends AppCompatActivity {
 //        ReservationRepository repository = new ReservationRepository(this.getApplication());
         dao = ApiClient.getInstance().create(ReservationDao.class);
 
-        CharSequence date = DateFormat.format("yyyy-MM-dd", new Date());
-        txv_response.setText(String.format("Available slots in date :%s", date));
+        String date = DateFormat.format("yyyy-MM-dd", new Date()).toString();
+        showSlots(teacher, date);
 
-        Call<List<Slot>> callAvailableSlots = dao.getAvailableSlots(teacher, date.toString());
+        searchDate.setOnClickListener(this::displayDateModal);
+        mDateSetListener = this::onDateSet;
+
+    }
+
+    private void showSlots(String teacher, String date) {
+        final String data = date;
+        Call<List<Slot>> callAvailableSlots = dao.getAvailableSlots(teacher, date);
         callAvailableSlots.enqueue(new Callback<List<Slot>>() {
             @Override
             public void onResponse(Call<List<Slot>> call, Response<List<Slot>> response) {
                 Log.d("mTAG", "onResponse() called [" + call.request() + "], response = [" + response.body() + "]");
+                txv_response.setText(String.format("Available slots in date :%s", data));
+
                 List<Slot> body = response.body();
-                Toasty.info(getApplication(),response.message()).show();
+                Toasty.info(getApplication(), response.message()).show();
                 for (Slot slot : body) {
                     String nSlot = slot.getSlot();
                     switch (nSlot) {
@@ -100,5 +115,28 @@ public class ChooseSlotActivity extends AppCompatActivity {
                 Toasty.error(getApplication(), t.getMessage()).show();
             }
         });
+    }
+
+    private void displayDateModal(View v) {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                v.getContext(),
+                mDateSetListener,
+                year, month, day);
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    private void onDateSet(DatePicker view1, int year, int month, int day) {
+        month = month + 1;
+        Log.d("mTAG", "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+
+        String date = year + "-" + month + "-" + day;
+        searchDate.setText(date);
+        showSlots(teacher, date);
     }
 }
