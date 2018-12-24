@@ -13,11 +13,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="8dp"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/design_default_color_primary"
             android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/search_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,43 +24,55 @@
 
         <TextView
             android:id="@+id/txv_response"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
             android:layout_height="59dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            android:layout_marginTop="16dp"
+            android:text="Slots available 2018-12-24"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_date" />
-
-        <EditText
-            android:id="@+id/search_date"
-            android:hint="Select date"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="7dp"
-            android:background="@color/design_default_color_primary"
-            android:queryHint="Select date"
-            app:layout_constraintBottom_toTopOf="@+id/txv_response"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txv_slot_teacher" />
 
+
+        <EditText
+            android:id="@+id/search_date"
+            android:background="@color/colorAccent"
+            style="@android:style/Widget.Holo.EditText"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:paddingRight="32dp"
+            android:drawableRight="@drawable/iccalendar"
+            android:hint="Select date"
+            android:queryHint="Select date"
+            android:layout_marginBottom="24dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_response" />
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical"
             android:paddingHorizontal="64dp"
             android:paddingTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txv_response">
+            app:layout_constraintTop_toBottomOf="@+id/search_date">
 
             <Button
                 android:id="@+id/btn_slot_1"
@@ -91,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="SLOT 1    [18 - 19]" />
         </LinearLayout>
+
     </android.support.constraint.ConstraintLayout>
 
 </layout>

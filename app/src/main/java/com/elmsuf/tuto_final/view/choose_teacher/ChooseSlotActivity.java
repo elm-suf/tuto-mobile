@@ -1,11 +1,13 @@
 package com.elmsuf.tuto_final.view.choose_teacher;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +78,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
         showSlots(teacher, date);
 
         searchDate.setOnClickListener(this::displayDateModal);
+        searchDate.setInputType(InputType.TYPE_NULL);
         mDateSetListener = this::onDateSet;
 
         btn_1.setOnClickListener(v -> effettuaPrenotazione(1));
@@ -112,6 +115,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
         final String data = date;
         Call<List<Slot>> callAvailableSlots = dao.getAvailableSlots(teacher, date);
         callAvailableSlots.enqueue(new Callback<List<Slot>>() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onResponse(Call<List<Slot>> call, Response<List<Slot>> response) {
                 Log.d("mTAG", "onResponse() called [" + call.request() + "], response = [" + response.body() + "]");
@@ -119,10 +123,10 @@ public class ChooseSlotActivity extends AppCompatActivity {
 
                 List<Slot> body = response.body();
                 Toasty.info(getApplication(), response.message()).show();
-                btn_1.setBackgroundColor(Color.GREEN);
-                btn_2.setBackgroundColor(Color.GREEN);
-                btn_3.setBackgroundColor(Color.GREEN);
-                btn_4.setBackgroundColor(Color.GREEN);
+                btn_1.setBackgroundColor(Color.parseColor("#00574B"));
+                btn_2.setBackgroundColor(Color.parseColor("#00574B"));
+                btn_3.setBackgroundColor(Color.parseColor("#00574B"));
+                btn_4.setBackgroundColor(Color.parseColor("#00574B"));
                 btn_1.setClickable(true);
                 btn_2.setClickable(true);
                 btn_3.setClickable(true);
@@ -131,19 +135,19 @@ public class ChooseSlotActivity extends AppCompatActivity {
                     String nSlot = slot.getSlot();
                     switch (nSlot) {
                         case "1":
-                            btn_1.setBackgroundColor(Color.RED);
+                            btn_1.setBackgroundColor(Color.parseColor("#B92B27"));
                             btn_1.setClickable(false);
                             break;
                         case "2":
-                            btn_2.setBackgroundColor(Color.RED);
+                            btn_2.setBackgroundColor(Color.parseColor("#B92B27"));
                             btn_2.setClickable(false);
                             break;
                         case "3":
-                            btn_3.setBackgroundColor(Color.RED);
+                            btn_3.setBackgroundColor(Color.parseColor("#B92B27"));
                             btn_3.setClickable(false);
                             break;
                         case "4":
-                            btn_4.setBackgroundColor(Color.RED);
+                            btn_4.setBackgroundColor(Color.parseColor("#B92B27"));
                             btn_4.setClickable(false);
                             break;
                     }

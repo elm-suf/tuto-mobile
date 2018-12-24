@@ -19,18 +19,16 @@
         android:id="@+id/root_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         card_view:cardCornerRadius="20dp"
         card_view:cardElevation="10dp"
         card_view:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:onClick="@{(v) -> handler.onCourseItemClicked()}"
-            android:padding="8dp">
+            android:paddingHorizontal="8dp"
+            >
 
 
             <!--android:src="@drawable/circle"-->

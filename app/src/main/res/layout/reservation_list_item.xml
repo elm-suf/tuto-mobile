@@ -21,6 +21,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="4dp"
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="4dp"
@@ -30,8 +31,8 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:onClick="@{(v) -> handler.onItemSelected()}">
+            android:onClick="@{(v) -> handler.onItemSelected()}"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/img_teacher"
@@ -49,62 +50,71 @@
             <TextView
                 android:id="@+id/txv_reserv_course"
                 style="@style/TextAppearance.AppCompat.Headline"
-                android:text="@{model.course}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{model.course}"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/txv_reserv_teacher_uname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_teacher"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread_inside" />
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:text="TWEB" />
 
             <TextView
                 android:id="@+id/txv_reserv_teacher_uname"
                 style="@style/TextAppearance.AppCompat.SearchResult.Title"
-                android:text="@{model.teacher}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{model.teacher}"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/txv_reserv_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_teacher"
-                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_course" />
+                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_course"
+                tools:text="Username-teacher" />
 
             <TextView
                 android:id="@+id/txv_reserv_date"
-                android:text="@{model.date}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{model.date}"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txv_reserve_slot"
                 app:layout_constraintStart_toEndOf="@+id/img_teacher"
-                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_teacher_uname" />
+                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_teacher_uname"
+                tools:text="2018-12-12" />
 
             <TextView
                 android:id="@+id/txv_reserve_slot"
-                android:text="@{model.slot}"
+                style="@st"
                 android:layout_width="59dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{model.slot}"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txv_reserv_date"
                 app:layout_constraintTop_toBottomOf="@+id/txv_reserv_teacher_uname"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="Slot 3" />
 
         </android.support.constraint.ConstraintLayout>
 
