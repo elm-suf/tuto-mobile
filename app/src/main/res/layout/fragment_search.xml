@@ -46,7 +46,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_search" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_search"
+            tools:listitem="@layout/course_list_item"
+            />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
