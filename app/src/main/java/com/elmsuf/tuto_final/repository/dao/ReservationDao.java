@@ -37,7 +37,6 @@ public interface ReservationDao {
                          @Query("stato") String status,
                          @Query("corso") String course,
                          @Query("data") String data);
-//    //todo left here
 //    @PUT("students/reservation")
 //    void makeReservation(@Query("username") String username,
 //                         @Query("docente") String teacher,

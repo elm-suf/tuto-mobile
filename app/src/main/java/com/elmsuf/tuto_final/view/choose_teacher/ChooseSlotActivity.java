@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.elmsuf.tuto_final.PrefConfig;
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.repository.ReservationRepository;
 import com.elmsuf.tuto_final.repository.dao.ApiClient;
@@ -46,12 +47,14 @@ public class ChooseSlotActivity extends AppCompatActivity {
     String teacher;
     String date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    PrefConfig prefConfig;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_slot);
+        prefConfig = new PrefConfig(getApplicationContext());
 
         Intent intent = getIntent();
         teacher = intent.getStringExtra(EXTRA_TEACHER);
@@ -83,7 +86,7 @@ public class ChooseSlotActivity extends AppCompatActivity {
 
     private void effettuaPrenotazione(int i) {
         //todo hardcoded USERNAME(get from Shared pref) & COURSE(get from intent)
-        Call<Void> voidCall = dao.makeReservation("username", teacher, i, "attiva", "corso", date);
+        Call<Void> voidCall = dao.makeReservation(prefConfig.readLoginName(), teacher, i, "attiva", "corso", date);
 
         voidCall.enqueue(new Callback<Void>() {
             @Override
