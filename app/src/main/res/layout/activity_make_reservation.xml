@@ -11,15 +11,37 @@
             type="com.elmsuf.tuto_final.viewmodel.reservation.ReservationViewModel" />
     </data>
 
+
     <android.support.constraint.ConstraintLayout
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.choose_teacher.ChooseTeacherActivity">
 
+        <TextView
+            android:id="@+id/rxvtxv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose a teacher"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_reservations"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_teachers"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="559dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rxvtxv"
             tools:listitem="@layout/teacher_list_item">
 
         </android.support.v7.widget.RecyclerView>
