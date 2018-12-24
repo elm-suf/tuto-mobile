@@ -33,5 +33,10 @@ public class PrefConfig {
     public void displayToast(String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
+    public void logOut() {
+        writeLoginStatus(false);
+        writeName(null);
+    }
 }
 

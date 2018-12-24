@@ -22,9 +22,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:padding="4dp"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="4dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="10dp"
         card_view:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
@@ -45,15 +44,15 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@+id/txv_course_name_list_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.48"
-                tools:srcCompat="@drawable/icon_course" />
+                tools:srcCompat="@drawable/icon_c"
+                android:src="@drawable/icon_c"
+                />
 
             <TextView
                 android:id="@+id/txv_course_name_list_item"
