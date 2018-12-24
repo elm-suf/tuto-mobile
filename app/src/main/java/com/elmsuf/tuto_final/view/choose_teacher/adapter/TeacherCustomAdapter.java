@@ -2,6 +2,7 @@ package com.elmsuf.tuto_final.view.choose_teacher.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.elmsuf.tuto_final.databinding.TeacherBinding;
 import com.elmsuf.tuto_final.repository.model.Teacher;
 import com.elmsuf.tuto_final.view.choose_teacher.ChoiceHandler;
+import com.elmsuf.tuto_final.view.choose_teacher.ChooseSlotActivity;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ import es.dmoral.toasty.Toasty;
 
 public class TeacherCustomAdapter extends RecyclerView.Adapter<TeacherCustomAdapter.CustomView> {
 
+    public static final String EXTRA_TEACHER = "EXTRA_TEACHER";
     List<Teacher> list;
     private LayoutInflater inflater;
     private Context context;
@@ -54,6 +57,9 @@ public class TeacherCustomAdapter extends RecyclerView.Adapter<TeacherCustomAdap
             public void onItemSelected() {
                 Log.d("mTAG", "onCourseItemClicked: ");
                 Toasty.success(context,"List item clicked").show();
+                Intent intent = new Intent(context, ChooseSlotActivity.class);
+                intent.putExtra(EXTRA_TEACHER, item.getUsername());
+                context.startActivity(intent);
             }
         });
 //            @Override
