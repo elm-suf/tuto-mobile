@@ -24,6 +24,8 @@ import com.elmsuf.tuto_final.viewmodel.searchVM.SearchViewModel;
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,6 +45,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getContext();
+        Toasty.info(context,"SEARCH OACreat()").show();
         recyclerView = getView().findViewById(R.id.recycler_courses);
         viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         viewModel.init();

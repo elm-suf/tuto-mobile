@@ -35,7 +35,7 @@ public class TeacherRepository {
                     data.setValue(response.body());
                     Toasty.success(application, response.message()).show();
                 } else {
-                    Toasty.error(application, response.message()).show();
+                    Toasty.info(application, response.message()).show();
                 }
             }
 

@@ -1,6 +1,7 @@
 package com.elmsuf.tuto_final.repository.dao;
 
 
+import com.elmsuf.tuto_final.repository.model.Reservation;
 import com.elmsuf.tuto_final.repository.model.Slot;
 
 import java.util.List;
@@ -37,6 +38,9 @@ public interface ReservationDao {
                          @Query("stato") String status,
                          @Query("corso") String course,
                          @Query("data") String data);
+
+    @GET("reservations/{username}")
+    Call<List<Reservation>> getAll(@Path("username") String username);
 //    @PUT("students/reservation")
 //    void makeReservation(@Query("username") String username,
 //                         @Query("docente") String teacher,
