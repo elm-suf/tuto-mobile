@@ -5,6 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="TeacherBinding">
+        <variable
+            name="handler"
+            type="com.elmsuf.tuto_final.view.choose_teacher.ChoiceHandler"/>
 
         <variable
             name="model"
@@ -27,7 +30,8 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:onClick="@{(v) -> handler.onItemSelected()}">
 
             <ImageView
                 android:id="@+id/img_teacher"

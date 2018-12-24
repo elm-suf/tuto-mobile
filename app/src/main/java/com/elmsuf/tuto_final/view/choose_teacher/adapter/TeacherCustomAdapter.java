@@ -1,8 +1,7 @@
-package com.elmsuf.tuto_final.view.reservations.adapter;
+package com.elmsuf.tuto_final.view.choose_teacher.adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.elmsuf.tuto_final.databinding.TeacherBinding;
 import com.elmsuf.tuto_final.repository.model.Teacher;
+import com.elmsuf.tuto_final.view.choose_teacher.ChoiceHandler;
 
 import java.util.List;
 
@@ -49,11 +49,15 @@ public class TeacherCustomAdapter extends RecyclerView.Adapter<TeacherCustomAdap
         holder.bind(item);
 
         final TeacherBinding binding = holder.getBinding();
-//        binding.setHandler(new InteractionHandler() {
+        binding.setHandler(new ChoiceHandler() {
+            @Override
+            public void onItemSelected() {
+                Log.d("mTAG", "onCourseItemClicked: ");
+                Toasty.success(context,"List item clicked").show();
+            }
+        });
 //            @Override
 //            public void onCourseItemClicked() {
-//                Log.d("mTAG", "onCourseItemClicked: ");
-//                Toasty.success(context,"List item clicked").show();
 //                Intent intent = new Intent(context, ChooseTeacherActivity.class);
 //                intent.putExtra(EXTRA_COURSE, course.getTitle());
 //                context.startActivity(intent);

@@ -1,7 +1,6 @@
-package com.elmsuf.tuto_final.view;
+package com.elmsuf.tuto_final.view.choose_teacher;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -11,11 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.elmsuf.tuto_final.R;
-import com.elmsuf.tuto_final.databinding.ActivityLoginBinding;
-import com.elmsuf.tuto_final.repository.model.Course;
 import com.elmsuf.tuto_final.repository.model.Teacher;
-import com.elmsuf.tuto_final.view.reservations.adapter.TeacherCustomAdapter;
-import com.elmsuf.tuto_final.view.search.adapter.CourseCustomAdapter;
+import com.elmsuf.tuto_final.view.choose_teacher.adapter.TeacherCustomAdapter;
 import com.elmsuf.tuto_final.viewmodel.reservation.ReservationViewModel;
 
 import org.jetbrains.annotations.Nullable;

@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.repository.model.Course;
-import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.choose_teacher.ChooseTeacherActivity;
 import com.elmsuf.tuto_final.view.search.adapter.CourseCustomAdapter;
 import com.elmsuf.tuto_final.viewmodel.searchVM.SearchViewModel;
 

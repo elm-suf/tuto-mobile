@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.elmsuf.tuto_final.databinding.CourseBinding;
 import com.elmsuf.tuto_final.repository.model.Course;
-import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.choose_teacher.ChooseTeacherActivity;
 import com.elmsuf.tuto_final.view.search.InteractionHandler;
 
 import java.util.List;
