@@ -7,23 +7,30 @@
         <variable
             name="viewModel"
             type="com.elmsuf.tuto_final.viewmodel.searchVM.SearchViewModel" />
-
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:padding="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="24dp"
         tools:context=".view.search.SearchFragment">
 
         <!-- TODO: Update blank fragment layout -->
-        <SearchView
+        <EditText
+            android:drawableRight="@drawable/icsearcher"
+            android:textColor="#EDEADA"
+            android:textColorHint="#EDEADA"
+            android:paddingRight="24dp"
+            android:elevation="32dp"
+            android:paddingLeft="24dp"
+            android:background="@color/colorAccent"
             android:id="@+id/edt_search"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_margin="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="7dp"
             android:autofillHints=""
             android:ems="10"
@@ -41,12 +48,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_search" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_search"
+            tools:listitem="@layout/course_list_item"
+            />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -18,11 +18,13 @@ import android.view.ViewGroup;
 
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.repository.model.Course;
-import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.choose_teacher.ChooseTeacherActivity;
 import com.elmsuf.tuto_final.view.search.adapter.CourseCustomAdapter;
 import com.elmsuf.tuto_final.viewmodel.searchVM.SearchViewModel;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +33,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
     public static final String EXTRA_COURSE = "EXTRA_COURSE" ;
     private SearchViewModel viewModel;
     private CourseCustomAdapter customAdapter;
+    Context context;
 
     RecyclerView recyclerView;
 
@@ -41,6 +44,8 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        context = getContext();
+        Toasty.info(context,"SEARCH OACreat()").show();
         recyclerView = getView().findViewById(R.id.recycler_courses);
         viewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         viewModel.init();
@@ -49,7 +54,7 @@ public class SearchFragment extends Fragment implements SearchCallbacks{
                     @Override
                     public void onChanged(@Nullable List<Course> courses) {
                         customAdapter = new CourseCustomAdapter(getActivity(), courses);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         recyclerView.setAdapter(customAdapter);
                     }
                 }

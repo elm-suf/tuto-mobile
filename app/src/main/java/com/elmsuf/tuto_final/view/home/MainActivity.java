@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.On
         super.onCreate(savedInstanceState);
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         tabLayout = binding.tabLayout;
-        tabLayout.addTab(tabLayout.newTab().setText("Search"));
-        tabLayout.addTab(tabLayout.newTab().setText("reservations"));
-        tabLayout.addTab(tabLayout.newTab().setText("Account"));
+        tabLayout.addTab(tabLayout.newTab().setText("Search").setIcon(R.drawable.tabsearch));
+        tabLayout.addTab(tabLayout.newTab().setText("reservations").setIcon(R.drawable.schedule));
+        tabLayout.addTab(tabLayout.newTab().setText("Account").setIcon(R.drawable.tabuser));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = binding.viewPager;

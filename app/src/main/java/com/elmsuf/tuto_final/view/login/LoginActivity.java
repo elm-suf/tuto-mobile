@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import com.elmsuf.tuto_final.PrefConfig;
 import com.elmsuf.tuto_final.R;
 import com.elmsuf.tuto_final.databinding.ActivityLoginBinding;
 import com.elmsuf.tuto_final.view.home.MainActivity;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements ResultLoginCallb
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    PrefConfig prefConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,23 @@ public class LoginActivity extends AppCompatActivity implements ResultLoginCallb
         binding.setViewModel(ViewModelProviders
                 .of(this, new LoginViewModelFactory(this))
                 .get(LoginViewModel.class));
+
+        //todo changed "this" -> getApplicationContext()
+        prefConfig = new PrefConfig(getApplicationContext());
+
+        if (prefConfig.readLoginStatus()) {
+            //user already logged in
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     @Override
     public void onSuccess(String username) {
         Toasty.success(this, String.format("Welcome %s", username)).show();
-        //todo add shared preferences
-//        MainActivity.prefConfig.displayToast("Login Success");
-//        MainActivity.prefConfig.writeLoginStatus(true);
-//        MainActivity.prefConfig.writeName(username);
+        prefConfig.writeLoginStatus(true);
+        prefConfig.writeName(username);
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(Intent.EXTRA_USER, username);

@@ -4,14 +4,14 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="TeacherBinding">
+    <data class="ReservationBinding">
         <variable
             name="handler"
-            type="com.elmsuf.tuto_final.view.choose_teacher.ChoiceHandler"/>
+            type="com.elmsuf.tuto_final.view.reservations.ReservationHandler"/>
 
         <variable
             name="model"
-            type="com.elmsuf.tuto_final.repository.model.Teacher" />
+            type="com.elmsuf.tuto_final.repository.model.Reservation" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -21,17 +21,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="4dp"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="8dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:onClick="@{(v) -> handler.onItemSelected()}">
+            android:onClick="@{(v) -> handler.onItemSelected()}"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/img_teacher"
@@ -48,7 +49,6 @@
 
             <TextView
                 android:id="@+id/txv_reserv_course"
-                android:text="@{model.username}"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,10 +56,14 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:text="@{model.course}"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/txv_reserv_teacher_uname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_teacher"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                tools:text="TWEB" />
 
             <TextView
                 android:id="@+id/txv_reserv_teacher_uname"
@@ -69,12 +73,48 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@{model.nome + model.cognome}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                android:text="@{model.teacher}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/txv_reserv_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_teacher"
-                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_course" />
+                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_course"
+                tools:text="Username-teacher" />
+
+            <TextView
+                android:id="@+id/txv_reserv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{model.date}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txv_reserve_slot"
+                app:layout_constraintStart_toEndOf="@+id/img_teacher"
+                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_teacher_uname"
+                tools:text="2018-12-12" />
+
+            <TextView
+                android:id="@+id/txv_reserve_slot"
+                style="@st"
+                android:layout_width="59dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{model.slot}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txv_reserv_date"
+                app:layout_constraintTop_toBottomOf="@+id/txv_reserv_teacher_uname"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="Slot 3" />
 
         </android.support.constraint.ConstraintLayout>
 

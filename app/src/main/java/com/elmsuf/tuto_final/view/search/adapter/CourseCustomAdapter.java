@@ -3,21 +3,21 @@ package com.elmsuf.tuto_final.view.search.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.media.MediaBrowserCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.elmsuf.tuto_final.databinding.CourseBinding;
 import com.elmsuf.tuto_final.repository.model.Course;
-import com.elmsuf.tuto_final.view.ChooseTeacherActivity;
-import com.elmsuf.tuto_final.view.search.SearchFragment;
+import com.elmsuf.tuto_final.view.choose_teacher.ChooseTeacherActivity;
+import com.elmsuf.tuto_final.view.search.InteractionHandler;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 import static com.elmsuf.tuto_final.view.search.SearchFragment.EXTRA_COURSE;
 
@@ -38,6 +38,7 @@ public class CourseCustomAdapter extends RecyclerView.Adapter<CourseCustomAdapte
         if (inflater == null) {
             inflater = LayoutInflater.from(viewGroup.getContext());
         }
+
         CourseBinding courseBinding = CourseBinding.inflate(inflater, viewGroup, false);
 //        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_list_item, viewGroup, false);
         return new CustomView(courseBinding);
@@ -47,8 +48,21 @@ public class CourseCustomAdapter extends RecyclerView.Adapter<CourseCustomAdapte
     @Override
     public void onBindViewHolder(@NonNull CustomView holder, int i) {
 //        holder.txv_course_name_list_item.setText(course.getTitle());
-        Course course = listOfCourses.get(i);
+        final Course course = listOfCourses.get(i);
         holder.bind(course);
+
+        final CourseBinding binding = holder.getBinding();
+        binding.setHandler(new InteractionHandler() {
+            @Override
+            public void onCourseItemClicked() {
+                Log.d("mTAG", "onCourseItemClicked: ");
+                Toasty.success(context,"List item clicked").show();
+                Intent intent = new Intent(context, ChooseTeacherActivity.class);
+                intent.putExtra(EXTRA_COURSE, course.getTitle());
+                context.startActivity(intent);
+            }
+        });
+//        binding.set
     }
 
     @Override
